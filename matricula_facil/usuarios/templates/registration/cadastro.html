@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto my-12 px-4">
+    <div class="bg-white p-8 rounded border border-blue-950 shadow-xl border-t-8 border-blue-950">
+        <h2 class="text-2xl font-bold text-blue-900 mb-2 text-center">Primeiro Acesso?</h2>
+        <p class="text-gray-600 text-sm mb-6 text-center">Não encontramos o CPF informado. Preencha os campos abaixo para criar sua conta de estudante.</p>
+
+        <form method="post" action="{% url 'cadastro' %}" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-1">Confirme seu CPF:</label>
+                <input type="text" name="new_cpf" required class="w-full p-2 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-1">Nome Completo do Aluno:</label>
+                <input type="text" name="nome" required class="w-full p-2 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-1">Escolha uma Senha:</label>
+                <input type="password" name="new_password" required class="w-full p-2 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 text-white p-3 rounded font-bold hover:bg-red-700 transition">
+                CONCLUIR CADASTRO E ENTRAR
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

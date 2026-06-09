@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto my-12 px-4">
+    <div class="bg-white p-8 rounded border border-gray-200 shadow-lg border-t-8 border-siepe-blue mb-8">
+        <h2 class="text-2xl font-bold text-siepe-blue mb-2">Ficha Cadastral e Envio de Documentos</h2>
+        <p class="text-gray-600 text-sm">Preencha as informações do estudante selecionado no <strong>SISSEL</strong> e realize o envio dos arquivos legíveis nos formatos PDF, PNG ou JPG.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-8">
+        {% csrf_token %}
+        
+        <div class="bg-white p-6 rounded border border-gray-200 shadow-md">
+            <h3 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">1. Ficha Cadastral do Aluno</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Nome Completo:</label>
+                    <input type="text" name="nome_completo" value="{{ user.first_name }}" required class="w-full p-2.5 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Data de Nascimento:</label>
+                    <input type="date" name="data_nascimento" required class="w-full p-2.5 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Nome da Mãe/Responsável:</label>
+                    <input type="text" name="nome_mae" required class="w-full p-2.5 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-1">Telefone de Contato:</label>
+                    <input type="text" name="telefone" placeholder="(81) 99999-0000" required class="w-full p-2.5 border border-gray-300 rounded outline-none focus:border-siepe-blue">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded border border-gray-200 shadow-md">
+            <h3 class="text-lg font-bold text-gray-800 border-b pb-2 mb-4">2. Documentação Obrigatória</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-4 border border-dashed border-gray-300 rounded bg-gray-50">
+                    <label class="block text-gray-800 font-semibold text-sm mb-1">Certidão de Nascimento:</label>
+                    <input type="file" name="doc_certidao" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <div class="p-4 border border-dashed border-gray-300 rounded bg-gray-50">
+                    <label class="block text-gray-800 font-semibold text-sm mb-1">Documento de Identidade (RG):</label>
+                    <input type="file" name="doc_rg" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <div class="p-4 border border-dashed border-gray-300 rounded bg-gray-50">
+                    <label class="block text-gray-800 font-semibold text-sm mb-1">Comprovante de Residência:</label>
+                    <input type="file" name="doc_residencia" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <div class="p-4 border border-dashed border-gray-300 rounded bg-gray-50">
+                    <label class="block text-gray-800 font-semibold text-sm mb-1">Foto 3x4 do Estudante:</label>
+                    <input type="file" name="doc_foto" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-right">
+            <button type="submit" class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 text-white font-bold text-lg px-8 py-3 rounded shadow hover:opacity-95 transition">
+                FINALIZAR E ENVIAR MATRÍCULA
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-full h-64 md:h-80 bg-cover bg-center relative" style="background-image: url('https://www.educacao.pe.gov.br/wp-content/uploads/2022/12/banner-matricula-2023.jpg');">
+   {% load static %} 
+    <img class="h-80 w-full" src="{% static 'usuarios/banner.jpeg' %}">
+</div>
+
+<div class="max-w-3xl mx-auto py-12 px-6 text-center">
+    <h3 class="text-2xl font-bold text-siepe-blue mb-6">Informações aos Selecionados SISSEL</h3>
+    
+    <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-8 text-justify md:text-center">
+        Os alunos que foram devidamente selecionados no sistema <strong>Sissel</strong> devem efetuar a confirmação de sua matrícula enviando a documentação digitalizada por meio desta plataforma. Para garantir a vaga, é obrigatório incluir: <strong>Certidão de Nascimento, Identidade (RG), Comprovante de Residência recente e uma Foto 3x4</strong>, além de realizar o preenchimento completo da nossa ficha cadastral eletrônica.
+    </p>
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'matricula' %}" class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 text-white text-lg font-black px-12 py-4 rounded shadow-lg hover:bg-red-700 transition inline-block">
+            PREENCHER MEU FORMULÁRIO
+        </a>
+    {% else %}
+        <a href="{% url 'login_custom' %}" class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 text-white text-lg font-black px-12 py-4 rounded shadow-lg hover:bg-red-700 transition inline-block">
+            MATRÍCULE-SE AGORA
+        </a>
+    {% endif %}
+</div>
+{% endblock %}

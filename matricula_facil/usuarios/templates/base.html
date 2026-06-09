@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal MatrículaFácil - Pernambuco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <div class="h-0 w-full bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900"></div>
+
+    <nav class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 border-b-2 border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{% url 'home' %}" class="text-3xl font-black tracking-tight italic select-none">
+                        <span class="text-[#00adef]">Ma</span><span class="text-[#0072bc]">trí</span><span class="text-[#34db42]">cu</span><span class="text-orange-600">la</span><span class="text-red-600">Fá</span><span class="text-red-700">cil</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="{% url 'home' %}" class="text-white hover:text-blue-300 font-bold py-2 transition">Home</a>
+                    <a href="#" class="text-white hover:text-blue-300 font-bold py-2 transition">Sobre</a>
+                    <a href="https://www.educacao.pe.gov.br/" target="_blank" class="text-white hover:text-blue-300 font-bold py-2 transition">Educação</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'matricula' %}" class="text-white hover:text-blue-300 font-bold py-2 transition">Minha Matrícula</a>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-center">
+                    {% if user.is_authenticated %}
+                        <div class="flex items-center space-x-4">
+                            <span class="text-black hover:text-gray-400 text-sm font-medium bg-gray-100 px-3 py-1.5 rounded-full border border-gray-200">
+                                💻 CPF: <strong>{{ user.username }}</strong>
+                            </span>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login_custom' %}" class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900 text-white px-6 py-2 rounded font-bold hover:opacity-90 transition shadow border border-blue-800">
+                            LOGIN
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 text-center py-4 text-xs border-t border-gray-800">
+        &copy; 2026 Secretaria de Educação e Esportes de Pernambuco.
+    </footer>
+
+</body>
+</html>
